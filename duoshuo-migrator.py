@@ -1,4 +1,4 @@
-#!/use/bin/env python
+#!/usr/bin/env python
 
 import sys
 import json
@@ -32,7 +32,6 @@ class Article(object):
         self.id = id
         self.title = title
         self.link = link
-        self.link = link
         self.identifier = identifier
         self.comment_status = comment_status
         self.comments = []
@@ -50,7 +49,12 @@ def json2objects(json_obj):
         id = art['thread_id']
         title = art['title']
         link = art['url']
-        identifier = art['thread_key']
+        identifier = str(id)
+        if 'thread_key' in art and \
+           art['thread_key'] is not None and \
+           art['thread_key'].strip() != "":
+            identifier = art['thread_key']
+
         id_to_article[id] = Article(id, title, link, identifier, 'open')
     
     for cmnt in comments:
