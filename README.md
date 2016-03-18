@@ -16,9 +16,14 @@
 
 1. 下载 [duoshuo-migrator.py](./duoshuo-migrator.py?raw=true)，并安装依赖
 
-    ```bash
-    pip install lxml
-    ```
+    * Linux/Mac OS X
+
+        ```bash
+        pip install lxml
+        ```
+    * Windows
+
+        Windows 下使用 pip 安装 lxml 时编译无法通过，到 <https://pypi.python.org/pypi/lxml/3.5.0> 下载对应自己 Python 版本的 32 或 64 位 exe 文件安装即可。
 
 2. 登录多说后台，在`http://<shortname>.duoshuo.com/admin/tools/` 页面导出多说评论
     ![export_duoshuo](screenshot/duoshuo_export.png)
