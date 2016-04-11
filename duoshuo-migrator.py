@@ -46,7 +46,7 @@ def json2objects(json_obj):
     comments = json_obj['posts']
 
     for art in articles:
-        id = art['thread_id']
+        id = int(art['thread_id'])
         title = art['title']
         link = art['url']
         identifier = str(id)
