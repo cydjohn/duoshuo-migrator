@@ -97,6 +97,11 @@ def objects2xml(articles):
         etree.SubElement(item, 'title').text = article.title
         etree.SubElement(item, 'link').text = article.link
         etree.SubElement(item, '{http://purl.org/rss/1.0/modules/content/}encoded').text = etree.CDATA('')
+        try:
+            etree.SubElement(item, '{http://www.disqus.com/}thread_identifier').text = article.identifier
+        except Exception as e:
+            print >> sys.stderr, "invalid thread key: %s: %s" % (article.identifier, e)
+            continue
         etree.SubElement(item, '{http://www.disqus.com/}thread_identifier').text = article.identifier
         etree.SubElement(item, '{' + wp_ns + '}post_date_gmt').text = ''
         etree.SubElement(item, '{' + wp_ns + '}comment_status').text = article.comment_status
