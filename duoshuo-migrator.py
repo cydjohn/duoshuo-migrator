@@ -48,14 +48,15 @@ def json2objects(json_obj):
     for art in articles:
         id = int(art['thread_id'])
         title = art['title']
-        link = art['url']
-        identifier = str(id)
-        if 'thread_key' in art and \
-           art['thread_key'] is not None and \
-           art['thread_key'].strip() != "":
-            identifier = art['thread_key']
+        if art.has_key('url'):
+            link = art['url']
+            identifier = str(id)
+            if 'thread_key' in art and \
+               art['thread_key'] is not None and \
+               art['thread_key'].strip() != "":
+                identifier = art['thread_key']
 
-        id_to_article[id] = Article(id, title, link, identifier, 'open')
+            id_to_article[id] = Article(id, title, link, identifier, 'open')
     
     for cmnt in comments:
         article_id = cmnt['thread_id']
